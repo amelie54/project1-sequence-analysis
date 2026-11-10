@@ -17,6 +17,7 @@ Code Design:
 First, i modularised the pipeline into distinct, single reponsibility functions to improve testability and code readability. Isolating validation prevents cascading errors when processing malformed reads. Alternatively, a monolithic function was considered but rejected due to poor maintainability. Second, i utilised nested dictionaries and robust sorting keys (sorting by count descending, then position ascending) in summarise_samples to handle tie breaking cleanly for mutation hotspots. Finally, i ensured invalid reads gracefully bypass mutation scanning rather than the script, storing error codes cleanly in a list.
 
 Testing:
+
 1. Invalid character and length test: Passed strings containning non A/C/G/T characters and incorrect lengths to verify proper error logging (wrong_length, invalid_characters)
 2. Case-insensitivity test: Inputted lower-case sequences to confirm automatic normalisation to upper case without triggering false mismatch flags.
 3. Edge case sample test: Tested datasets with zero valid reads to ensure percentage calculations gracefully evaluate to None without division by zero errors.
